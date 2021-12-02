@@ -1,0 +1,29 @@
+==============================================================
+intalando o laravel
+ ------------------------------------------------------------
+composer global require laravel/installer
+==============================================================
+Criando um novo projeto.
+ ------------------------------------------------------------
+composer create-project laravel/laravel="versão" Nome-do-app
+==============================================================
+
+composer create-project laravel/laravel="5.*<Versão" Novo_projeto
+
+composer create-project laravel/laravel=5.8 projeto-teste
+
+
+
+Schema::defaultStringLength(191);
+
+
+use Illuminate\Support\Facades\Schema;
+
+===============================================================
+criando Sistema de login(usuarios)
+
+composer require laravel/ui
+php artisan ui vue --auth
+php artisan migrate
+
+
