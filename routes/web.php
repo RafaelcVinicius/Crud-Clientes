@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\vendasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +25,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('/clientes', ClientesController::class);
+
+
+Route::prefix('app')->group(function(){
+    Route::get('/', function () {
+        return view('index');})->middleware('auth');;
+    Route::resource('/clientes', ClientesController::class);
+    Route::resource('/produtos', ProdutosController::class);
+    Route::resource('/vendas', vendasController::class);
+});

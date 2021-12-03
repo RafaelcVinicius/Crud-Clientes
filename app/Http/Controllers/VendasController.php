@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Vendas;
 class VendasController extends Controller
 {
 
@@ -20,7 +20,10 @@ class VendasController extends Controller
      */
     public function index()
     {
-        //
+        $produtos = Produtos::consultar();
+    
+        return view('Produtos.produtos')
+        ->with('produtos', $produtos);
     }
 
     /**

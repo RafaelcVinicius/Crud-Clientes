@@ -65,7 +65,9 @@ class ProdutosController extends Controller
      */
     public function show($id)
     {
-        //
+        $produto = Produtos::where('id', $id)->first();
+
+        return view('Produtos.info')->with('produto', $produto);
     }
 
     /**
@@ -76,7 +78,9 @@ class ProdutosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $produto = Produtos::where('id', $id)->first();
+
+        return view('Produtos.edit')->with('produto', $produto);
     }
 
     /**
@@ -88,7 +92,11 @@ class ProdutosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+            $produto = Produtos::find($id);
+            $produto->nome = $request->input('nome');
+            $produto->save();
+
+           return redirect()->route('produtos.index');
     }
 
     /**
@@ -99,6 +107,8 @@ class ProdutosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $test = Produtos::find($id);    
+        $test->delete();               
+        return redirect()->route('produtos.index'); 
     }
 }

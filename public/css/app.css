@@ -1,20 +1,19 @@
 body{
-    background-color: antiquewhite;
+    background-color: rgb(252, 252, 252);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .corpo{
-    background-color: aqua;
+    background-color: rgb(252, 252, 252);
     max-width: 1080;
     width: 100%;
     min-width: 500px;
-
 }
 
 .clientes{
     display: flex;
     Justify-content: center;
     align-items: center;
-    background-color: beige;
     flex-basis: 100%;
     flex-wrap:wrap;
 }
@@ -22,7 +21,7 @@ body{
 .cliente{
     display: flex;
     Justify-content: center;
-    background-color: rgb(211, 154, 68);
+    background-color: rgb(219, 173, 103);
     margin-top: 5px;
     margin-left: 2px;
     border-radius: 6%;
@@ -72,4 +71,14 @@ border-radius: 8%;
 li{
     list-style: none; 
 }
+.titulo{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+.menu{
+    display: flex;
+justify-content: space-evenly;
+align-items: center;
+}
+
 

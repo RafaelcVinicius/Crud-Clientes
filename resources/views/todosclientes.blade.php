@@ -2,10 +2,11 @@
 
 @section('Conteudo')
 <div class="corpo">
+    <div class="menu">
+        <a class="btn criar" href="{{ route('clientes.create')}}">Criar</a>
 
-        <a href="{{ route('clientes.create')}}">Criar</a>
-
-        <h3>Todos os Clientes</h3>
+        <h3 class="titulo">Todos os Clientes</h3>
+    </div>
     <div class="clientes">
         @foreach ($cliente as $cli)
             <li >
@@ -28,6 +29,5 @@
     </div>    
 </div>
 @endsection
-
 
 
