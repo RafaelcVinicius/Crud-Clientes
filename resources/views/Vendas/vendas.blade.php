@@ -5,7 +5,7 @@
     <div class="menu">
         <a class="btn criar" href="{{ route('produtos.create')}}">Criar</a>
 
-        <h3 class="titulo">Todos os Produtos</h3>
+        <h3 class="titulo">Todos os Vendas</h3>
     </div>
     <div class="clientes">
         @foreach ($Vendas as $ven)

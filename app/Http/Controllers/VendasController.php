@@ -20,10 +20,10 @@ class VendasController extends Controller
      */
     public function index()
     {
-        $produtos = Produtos::consultar();
+        $vendas = Vendas::consultar();
     
-        return view('Produtos.produtos')
-        ->with('produtos', $produtos);
+        return view('Vendas.vendas')
+        ->with('vendas', $vendas);
     }
 
     /**
