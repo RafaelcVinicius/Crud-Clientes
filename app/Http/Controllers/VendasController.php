@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clientes;
+use App\Models\Produtos;
 use Illuminate\Http\Request;
 use App\Models\Vendas;
+
 class VendasController extends Controller
+
 {
 
     public function __construct()
@@ -20,10 +24,12 @@ class VendasController extends Controller
      */
     public function index()
     {
-        $vendas = Vendas::consultar();
-    
+        $vendas = Vendas::get();
+        $vendas;
+
         return view('Vendas.vendas')
         ->with('vendas', $vendas);
+
     }
 
     /**
@@ -33,7 +39,13 @@ class VendasController extends Controller
      */
     public function create()
     {
-        //
+
+        $produtos = Produtos::get();
+        $clientes = Clientes::get();
+
+       
+        return view('Vendas.teladevenda')
+        ->with('produtos', $produtos)->with('clientes', $clientes);
     }
 
     /**
@@ -55,7 +67,9 @@ class VendasController extends Controller
      */
     public function show($id)
     {
-        //
+      $venda = Vendas::find($id);
+      $itens = $venda->itens;  
+      return view('Vendas.info')->with('venda', $venda)->with('itens', $itens);
     }
 
     /**

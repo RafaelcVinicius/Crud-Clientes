@@ -11,6 +11,7 @@ class Clientes extends Model
     use HasFactory;
 
     protected $tables = 'clientes';
+    protected $primarykey = 'id';
     public $timestamps = false;
     
 
