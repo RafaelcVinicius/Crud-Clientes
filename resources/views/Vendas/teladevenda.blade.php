@@ -16,9 +16,10 @@
 </select><br>
 
 <label for="produtos">produtos</label>
+
 @for($a = 0; $a < $b =2; $a++)
     <div id="select">
-        <select name="produtos" id="produtos">
+        <select name="produtos " id="produtos">
             @foreach ($produtos as $produto)
             <option value="{{$produto['id']}}">{{$produto['nome']}}</option>
             @endforeach
@@ -35,7 +36,7 @@
 
 <script>
  document.getElementById('produto').addEventListener('click', function() {
-
+    document.getElementById()
 
        console.log('produto');
     });
