@@ -2,6 +2,11 @@
 
 @section('Conteudo')
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+
 <h3>Caixa Livre</h3>
 
 
@@ -15,73 +20,110 @@
     @endforeach
 </select><br>
 
-<label for="produtos">produtos</label>
 
-@for($a = 0; $a < $b =2; $a++)
-    <div id="select">
-        <select name="produtos " id="produtos">
-            @foreach ($produtos as $produto)
-            <option value="{{$produto['id']}}">{{$produto['nome']}}</option>
-            @endforeach
-        </select>
+<H3>prod</H3>
+
+<div id="corpo">
+    <div id="topo">
+        <div class="center">
+            <form>
+                <input type="text" name="search" autocomplete="off">
+            </form>
+            <div id="results">
+                
+            </div>
+        </div>
     </div>
-@endfor
+    <div id="content">
+    </div>
+</div>
 
-<Button type="button" id="produto">mais</Button>
 
 
-<input type="submit" value="ABERTO">
+<div id="dados">
+<H3>produtos</H3>
+
+</div>
+
+
+
+
 <input type="submit" value="FINALIZADO">
 </form>
 
+
 <script>
- document.getElementById('produto').addEventListener('click', function() {
-    document.getElementById()
-
-       console.log('produto');
-    });
 
 
-    /*
-    let timer, corAtual;
-    function resetar() {
-        corAtual = 'white';
-        document.body.style.backgroundColor = corAtual;
-        clearInterval(timer);
+//pesquisar os produtos
+
+
+$(document).ready(function(){
+	$('.center input').keyup(function(){
+		var words = $('input').val();
+
+		if (words != '') {
+
+			$.ajax({
+				'url' : '/api/json',
+				'method' : 'GET',
+				'dataType' : 'json',
+				'data' : {s : words}
+			})
+
+            
+            function dados(){
+            for(i=0; i < words.length; i++){
+                words = '<input type="checkbox" value="' + words.nome + '" id="' + words.id + '"> <label for="' + words.id +  '"> '+ words[i].nome +' </label>';
+           
+        $('#results').append(words);
+       }
     }
-    function mudarCor() {
-        switch(corAtual) {
-            case 'white':
-                corAtual = 'red'
-                break
-            case 'red':
-                corAtual = 'green'
-                break
-            case 'green':
-                corAtual = 'blue'
-                break
-            case 'blue':
-                corAtual = 'pink'
-                break                      
-            case 'pink':
-                corAtual = 'white'
-                break        
-            default:
-                corAtual = 'white'
+       $(function(){
+             dados();
+        })
+
+       
+			/*.done(function(response){
+				$('.results').html('');
+				
+				$.each(response, function(key, val){
+					$('.results').append('<div class="item">' + val + '</div>');
+				});
+			})
+			.fail(function(){
+				$('.results').html('');
+			});
+			
+
+		            } else {
+			$('.results').html('');*/
         }
-        console.log(corAtual)
-        document.body.style.backgroundColor = corAtual
-    }
-    document.getElementById('iniciar').addEventListener('click', function() {
-        timer = setInterval(() => {
-            mudarCor()
-        }, 2000)
+	});
+});
+
+
+
+
+
+
+
+//carega os produtos via ajax
+
+function caregar(){
+  $.getJSON('/api/json', function(data){
+       
+       for(i=0; i < data.length; i++){
+           dados = '<input type="checkbox" value="' + data[i].nome + '" id="' + data[i].id + '"> <label for="' + data[i].id +  '"> '+ data[i].nome +' </label>';
+           
+                    
+        $('#dados').append(dados);
+       }
     });
-    document.getElementById('parar').addEventListener('click', function() {
-        resetar()
-    });
-    window.addEventListener('load', function() {
-        resetar()
-    });*/
-</script>
+}
+
+$(function(){
+    caregar();
+})
+    </script>
 @endsection

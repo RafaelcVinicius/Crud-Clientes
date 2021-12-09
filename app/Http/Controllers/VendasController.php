@@ -39,13 +39,13 @@ class VendasController extends Controller
      */
     public function create()
     {
-
+        $np = Produtos::get()->count();
         $produtos = Produtos::get();
         $clientes = Clientes::get();
 
        
         return view('Vendas.teladevenda')
-        ->with('produtos', $produtos)->with('clientes', $clientes);
+        ->with('produtos', $produtos)->with('clientes', $clientes)->with('np', $np);
     }
 
     /**
@@ -56,7 +56,10 @@ class VendasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //$produto = Produtos::get()->count();
+        $produto['n'] = 'eeee';
+        echo json_encode($produto);
     }
 
     /**
