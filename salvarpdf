@@ -1,0 +1,86 @@
+//controler
+
+ public function store(Request $request)
+    {
+        try {
+            $dados = json_decode($request->get('d'));
+            $erros = []; 
+
+        $data = base64_decode(substr($dados->file, strpos($dados->file, ',') + 1));   
+            Storage::disk('public')->put('exampgl.pdf', $data);
+            // public_path
+            // Storage::put('file.png', $dados->file);            
+            // $path = Storage::putFile('avatars', $dados->file('avatar'));
+            // Storage::disk('public')->put('teste.png', $newJpg);
+            // saveFile($dados->file);
+            // $add = $dados->file->store('teste');
+            // $file = $dados->allFiles()['file'];
+            // $filePath = $dados->file('file')->storeAs('uploads', 'teste', 'public');
+        
+
+
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
+**********************
+
+//index.blade
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{ asset('js/function.js')}}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+        <h1>Gravar Teste</h1>
+
+        <div onclick="uploadpdf(this)">click me
+            <input type="file" id="img" >
+    </div>
+    <button onclick="gravar()">gravar</button>
+
+
+    <script> 
+    var valor;
+
+        function arrayDados(){
+            var dados = new Object;
+            dados.file = valor
+            return dados;
+        }
+
+        function gravar(){
+            sendToApi('{{ route("salvar.store") }}', arrayDados(), 'POST', true).then(response => {
+                console.log(response)
+
+            });
+        }
+        function uploadpdf(obj) {
+                var uploader    = document.createElement('input');
+
+                uploader.setAttribute('type', 'file');
+                uploader.setAttribute('id', 'a');
+                uploader.click();
+
+                uploader.addEventListener('change', function(){
+                    var reader = new FileReader();
+                    reader.onload = function(event) {    
+                        valor = event.target.result
+                    }
+                    reader.readAsDataURL(uploader.files[0]);
+                  
+            })
+         }
+    </script>
+</body>
+</html>
+
