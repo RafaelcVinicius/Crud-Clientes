@@ -5,7 +5,7 @@
         try {
             $dados = json_decode($request->get('d'));
             $erros = []; 
-
+//dd((strlen(rtrim($dados->file, '=')) * 3 / 4)); 
         $data = base64_decode(substr($dados->file, strpos($dados->file, ',') + 1));   
             Storage::disk('public')->put('exampgl.pdf', $data);
             // public_path
