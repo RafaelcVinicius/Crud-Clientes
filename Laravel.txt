@@ -26,4 +26,9 @@ composer require laravel/ui
 php artisan ui vue --auth
 php artisan migrate
 
+=============================================
+NPM
+
+npm config set fetch-retry-mintimeout 20000
+npm config set fetch-retry-maxtimeout 120000
 
